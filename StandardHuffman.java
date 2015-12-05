@@ -81,8 +81,8 @@ public class StandardHuffman {
 		frame.getContentPane().add(textField);
 		textField.setColumns(10);
 		
-		JButton btnBrowse = new JButton("Browse"); // here actionListener is an object from class
-		btnBrowse.addActionListener(new ActionListener() { // that implements listener interface
+		JButton btnBrowse = new JButton("Browse"); 
+		btnBrowse.addActionListener(new ActionListener() { 
 			public void actionPerformed(ActionEvent e) {
 				JFileChooser ChosenFile = new JFileChooser();
 				ChosenFile.showOpenDialog(null);
@@ -100,7 +100,7 @@ public class StandardHuffman {
 					}
 				else
 					try {
-						readFile(false) ; // read a map and code to uncompress
+						readFile(false) ; // read a table(map) and code to uncompress
 					} catch (IOException e1) {
 						e1.printStackTrace();
 					} 
@@ -120,8 +120,8 @@ public class StandardHuffman {
 		if(b==true)
 		{
 			try {
-				Scanner input = new Scanner(myFile) ; // set the scanner to take input from file
-				while(input.hasNext())// reads line by line, stops when it reads a blank line
+				Scanner input = new Scanner(myFile) ; 
+				while(input.hasNext())
 				{
 					charstream = input.next() ; 
 				}
@@ -192,7 +192,7 @@ public class StandardHuffman {
 				vect.addElement(new Pair<String, Integer>(temp, x));
 		}
 		Vector< Pair<Integer, Node> > tree = new Vector< Pair<Integer, Node> >() ;
-		// save each pairs of (number of occurrence of letters in string, node)
+		// save each pair of (number of occurrence of letters in string, node)
 		for(int i=0;i<vect.size();i++)
 		{
 			Node node = new Node(vect.get(i).l, vect.get(i).r) ;
@@ -245,12 +245,12 @@ public class StandardHuffman {
 	
 	public void deCompress()
 	{
-		decodeMap = new TreeMap<>() ; // this should contain code ---> key(letter)
+		decodeMap = new TreeMap<>() ; 
 		StringBuilder uncompressed = new StringBuilder() ;
 		String code = new String() ;
 		String value = new String() ;
 		int x = 1 ;
-		// decode1 contains the map in form code$key$
+		
 		for(int i=0, j=0;j<decode1.length();j++)
 		{
 			if(decode1.charAt(j)=='$'&&x%2!=0) // means we read a code
@@ -382,13 +382,4 @@ public class StandardHuffman {
 			e.printStackTrace();
 		}
 	}
-	/* to print map
-	 * Set setOfKeys = decodeMap.keySet();
-	Iterator iterator = setOfKeys.iterator(); 
-	while (iterator.hasNext()) 
-	{
-		String key = (String) iterator.next();
-		String val = (String)decodeMap.get(key); 
-		System.out.println("Key: "+ key+", Value: "+ val); 
-	}*/
 }
